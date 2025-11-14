@@ -3,7 +3,7 @@ import PostList from "../components/PostList";
 import { Link } from "react-router-dom";
 
 export default function Home() {
-  const [posts, setPosts] = useState([]);
+  const [, setPosts] = useState([]);
   const [featured, setFeatured] = useState(null);
   const [highlights, setHighlights] = useState([]);
   const [loading, setLoading] = useState(true);
