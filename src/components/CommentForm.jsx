@@ -1,7 +1,9 @@
+// src/components/CommentForm.jsx
 import React, { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 
 export default function CommentForm({ onSubmit }) {
-  const [name, setName] = useState("");
+  const { user } = useAuth();
   const [text, setText] = useState("");
   const [sending, setSending] = useState(false);
 
@@ -11,7 +13,7 @@ export default function CommentForm({ onSubmit }) {
     if (!trimmed) return;
 
     const newComment = {
-      name: name.trim() || "Anonymous",
+      name: user?.username || "Anonymous",
       body: trimmed,
       postId: Date.now(),
     };
@@ -23,8 +25,8 @@ export default function CommentForm({ onSubmit }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newComment),
       });
+
       if (onSubmit) onSubmit(newComment);
-      setName("");
       setText("");
     } catch (err) {
       console.error("Error posting comment:", err);
@@ -35,14 +37,6 @@ export default function CommentForm({ onSubmit }) {
 
   return (
     <form onSubmit={handleSubmit} className="comment-form" style={{ marginTop: 10 }}>
-      <input
-        aria-label="Your name"
-        type="text"
-        placeholder="Your name (optional)"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        disabled={sending}
-      />
       <input
         aria-label="Your comment"
         type="text"
