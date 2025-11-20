@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 
 export default function Navbar() {
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const { isAuthenticated, user, logout } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
