@@ -1,13 +1,23 @@
+// src/components/Navbar.jsx
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ThemeContext } from "../context/ThemeContext";
 import { useAuth } from "../context/AuthContext";
 
+/**
+ * Main site navbar
+ * Handles navigation links, login and logout, and theme switching
+ * Hides the Blog link unless the user is authenticated
+ */
 export default function Navbar() {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
 
+  /**
+   * Logs out the user
+   * Redirects to home after clearing auth state
+   */
   const handleLogout = () => {
     logout();
     navigate("/", { replace: true });

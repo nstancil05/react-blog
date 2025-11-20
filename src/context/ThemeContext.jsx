@@ -1,3 +1,4 @@
+// src/context/ThemeContext.jsx
 import React, { createContext, useEffect, useState } from "react";
 
 export const ThemeContext = createContext({
@@ -5,6 +6,10 @@ export const ThemeContext = createContext({
   toggleTheme: () => {}
 });
 
+/**
+ * Provides site wide theme state
+ * Persists the selected theme in localStorage and applies it to the document root
+ */
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
     try {
@@ -14,6 +19,10 @@ export function ThemeProvider({ children }) {
     }
   });
 
+ /**
+   * Syncs theme to localStorage
+   * Applies theme value to the document root for CSS targeting
+   */
   useEffect(() => {
     try {
       localStorage.setItem("theme", theme);
@@ -22,6 +31,9 @@ export function ThemeProvider({ children }) {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
+  /**
+   * Toggles between dark and light mode
+   */
   const toggleTheme = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
 
   return (

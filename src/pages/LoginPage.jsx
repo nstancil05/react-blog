@@ -3,6 +3,10 @@ import React, { useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
+/**
+ * Simple login page
+ * Accepts a username and password and stores the username as the authenticated user
+ */
 export default function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -17,6 +21,10 @@ export default function LoginPage() {
     (location.state && location.state.from) ||
     "/posts"; // default after login
 
+    /**
+   * Handles fake authentication
+   * Requires both inputs and simulates a short delay
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     setTouched(true);

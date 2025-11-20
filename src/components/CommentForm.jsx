@@ -2,11 +2,22 @@
 import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 
+/**
+ * Handles creating a new comment
+ * Pulls the current users username and builds a comment object
+ * Sends the comment to a placeholder API and notifies the parent through onSubmit
+ */
 export default function CommentForm({ onSubmit }) {
   const { user } = useAuth();
   const [text, setText] = useState("");
   const [sending, setSending] = useState(false);
 
+   /**
+   * Submits the comment
+   * Prevents empty messages
+   * Builds the comment data using the active user
+   * Sends the request and clears input on success
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     const trimmed = text.trim();
@@ -42,7 +53,7 @@ export default function CommentForm({ onSubmit }) {
         type="text"
         placeholder="Write a comment…"
         value={text}
-        onChange={(e) => setText(e.target.value)}
+        onChange={(e) => setText(e.target.value)} // track input state
         disabled={sending}
       />
       <button type="submit" disabled={sending}>

@@ -1,11 +1,20 @@
+// src/pages/BlogPostsPage.jsx
 import React, { useEffect, useState } from "react";
 import PostList from "../components/PostList";
 
+/**
+ * Fetches blog posts from the placeholder API
+ * Shows a trimmed list for readability and handles loading and error states
+ */
 export default function BlogPostsPage() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  /**
+   * Loads posts once on mount
+   * Limits to the first 12 posts for cleaner display
+   */
   useEffect(() => {
     async function fetchPosts() {
       try {
@@ -13,7 +22,6 @@ export default function BlogPostsPage() {
         if (!res.ok) throw new Error("Failed to fetch posts");
         const data = await res.json();
 
-        // Trim to first 12 posts for readability
         const limited = data.slice(0, 12);
         setPosts(limited);
       } catch (err) {

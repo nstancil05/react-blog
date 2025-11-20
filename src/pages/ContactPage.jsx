@@ -1,11 +1,24 @@
+// src/pages/ContactPage.jsx
 import React, { useState } from "react";
 
+/**
+ * Contact page with a simple demo form
+ * Stores form values locally and resets after submission
+ */
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
+   /**
+   * Generic change handler for all fields
+   * Updates matching key on form state
+   */
   const handleChange = (e) =>
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
+  /**
+   * Demo submit handler
+   * Prevents page reload and clears the form
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
     alert("Thanks — this form demonstration does not submit to a server.");

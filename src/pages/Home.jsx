@@ -3,6 +3,10 @@ import PostList from "../components/PostList";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
+/**
+ * Home page with a landing section, a featured post, and highlight posts
+ * Fetches posts from the placeholder API and prepares featured and highlight sections
+ */
 export default function Home() {
   const [, setPosts] = useState([]);
   const [featured, setFeatured] = useState(null);
@@ -11,6 +15,10 @@ export default function Home() {
   const [error, setError] = useState(null);
   const { isAuthenticated } = useAuth();
 
+   /**
+   * Loads all posts on mount
+   * First post is featured, next three are highlights, full list stored for potential use
+   */
   useEffect(() => {
     async function fetchPosts() {
       try {

@@ -13,6 +13,11 @@ import { ThemeProvider } from "./context/ThemeContext";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 
+/**
+ * Main application component
+ * Wraps the entire app with Theme and Auth providers
+ * Defines routing and protects certain routes using ProtectedRoute
+ */
 function App() {
   return (
     <ThemeProvider>

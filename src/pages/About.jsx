@@ -1,5 +1,10 @@
+// src/pages/About.jsx
 import React from "react";
 
+/**
+ * Simple about page
+ * Introduces the project and its purpose
+ */
 export default function About() {
   return (
     <main className="main container">

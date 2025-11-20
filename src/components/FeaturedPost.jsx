@@ -1,6 +1,11 @@
+// src/components/FeaturedPost.jsx
 import React from "react";
 import { Link } from "react-router-dom";
 
+/**
+ * Displays a highlighted post on the homepage
+ * Provides a larger layout to draw attention to an important or recent post
+ */
 export default function FeaturedPost({ post }) {
   if (!post) return null;
   return (

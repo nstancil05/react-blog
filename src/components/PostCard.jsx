@@ -2,11 +2,19 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+/**
+ * Displays a single post preview card
+ * Includes a simple like system stored in local component state
+ */
 export default function PostCard({ post }) {
   const { id, title, body, userId } = post;
   const [likeCount, setLikeCount] = useState(0);
   const [liked, setLiked] = useState(false);
 
+   /**
+   * Toggles like state
+   * Increments or decrements the like count based on the next state
+   */
   const toggleLike = () => {
     const next = !liked;
     setLiked(next);

@@ -3,6 +3,10 @@ import { useParams, Link } from "react-router-dom";
 import CommentForm from "../components/CommentForm";
 import { useAuth } from "../context/AuthContext";
 
+/**
+ * Displays a single post along with author info and comments
+ * Loads post data, user data, and comment data from the placeholder API
+ */
 export default function IndividualPostPage() {
   const { id } = useParams();
   const { isAuthenticated } = useAuth();
@@ -13,6 +17,9 @@ export default function IndividualPostPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+   /**
+   * Loads post, author, and comments for the given id
+   */
   useEffect(() => {
     async function fetchPostData() {
       try {
@@ -63,6 +70,9 @@ export default function IndividualPostPage() {
       </main>
     );
 
+    /**
+   * Adds a locally created comment to the comment list
+   */
   const handleAddComment = (newComment) => {
     setComments((prev) => [
       ...prev,
